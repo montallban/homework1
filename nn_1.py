@@ -14,13 +14,13 @@ import pickle
 from tensorflow.keras.layers import InputLayer, Dense
 from tensorflow.keras.models import Sequential
 
-fp = open("/home/mcmontalbano/AML/hw1_dataset.pkl", "rb")
+fp = open("/home/mcmontalbano/new/hw1_dataset.pkl", "rb")
 foo = pickle.load(fp)
 fp.close()
 
 ins = foo["ins"] # grab inputs
 outs = foo["outs"]
-
+print(ins)
 #################################################################
 # Default plotting parameters
 FONTSIZE = 18
@@ -125,7 +125,6 @@ def display_learning_curve_set(base):
             plt.ylabel('MSE')
             plt.xlabel('epochs')
             plt.plot(history['loss'])
-            plt.show()
             f.save_fig("exp_{}.pdf".format(idx), bbox_inches='tight')
     # Finish off the figure
     
@@ -150,36 +149,13 @@ if __name__ == "__main__":
     parser = create_parser()
     args = parser.parse_args()
 
-    #exp 1
-    args.exp=3
+    #exp 
+    args.exp=6
     args.n_hidden1=16
     args.n_hidden2=8
     args.n_hidden3=4
     args.activation0="tanh"
     args.activation1="elu"
-    args.activation2="tanh"
-    args.epochs=1000
-    execute_exp(args)
-
-
-    args.exp=6
-    args.n_hidden1=10
-    args.n_hidden2=100
-    args.n_hidden3=10
-    args.activation0="tanh"
-    args.activation2="tanh"
-    execute_exp(args)
-
-
-    parser = create_parser()
-    args = parser.parse_args()
-
-    args.exp=7
-    args.n_hidden1=16
-    args.n_hidden2=8
-    args.n_hidden3=4
-    args.lrate=0.001
-    args.activation0="tanh"
     args.activation2="tanh"
     args.epochs=1000
     execute_exp(args)
